@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
-export default function EducationInfo ({title}, onSubmit) {
+export default function EducationInfo ({isActive, onEdit, onSubmit}) {
 
     const [info, setInfo] = useState({'Name of School': '', 'Degree Level': '', 'Field of Study': '', 'Dates of Study': ''});
-
+    if (isActive) {
         return (
             <>
-                <h2>{title}</h2>
                 <label>Name of School: </label>
                 <input 
                     onChange={(e) => setInfo({...info, 'Name of School': e.target.value})}
@@ -26,4 +25,9 @@ export default function EducationInfo ({title}, onSubmit) {
                 <button onClick={onSubmit}>Submit</button>
             </>
         )
+    } else {
+        return (
+            <button onClick={onEdit}>Edit</button>
+        )
+    }
 }

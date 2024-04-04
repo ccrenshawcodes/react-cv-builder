@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
-export default function GeneralInfo ({title}, onSubmit) {
+export default function GeneralInfo ({isActive, onEdit, onSubmit}) {
 
     const [info, setInfo] = useState({name: '', email: '', phoneNumber: ''});
-
+    if (isActive) {
         return (
             <>
-                <h2>{title}</h2>
                 <label>Name: </label>
                 <input 
                     onChange={(e) => setInfo({...info, name: e.target.value})}
@@ -22,4 +21,9 @@ export default function GeneralInfo ({title}, onSubmit) {
                 <button onClick={onSubmit}>Submit</button>
             </>
         )
+    } else {
+        return (
+            <button onClick={onEdit}>Edit</button>
+        )
+    }
 }
