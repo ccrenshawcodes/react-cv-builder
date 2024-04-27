@@ -1,33 +1,27 @@
-import { useState } from 'react';
+export default function PracticalExperience ({ data, onChange }) {
 
-export default function PracticalExperience ({isActive, onEdit, onSubmit}) {
-
-    const [info, setInfo] = useState({'Name of Company': '', Title: '', Responsibilities: '', 'Start and End Date': ''});
-    if (isActive) {
         return (
-            <>
+            <div className="input-section">
                 <label>Name of Company: </label>
                 <input 
-                    onChange={(e) => setInfo({...info, 'Name of Company': e.target.value})}
+                    value={data['Name of Company']}
+                    onChange={(e) => onChange({...data, 'Name of Company': e.target.value})}
                 />
                 <label>Title:  </label>
                 <input 
-                    onChange={(e) => setInfo({...info, Title: e.target.value})}
+                    value={data.Title}
+                    onChange={(e) => onChange({...data, Title: e.target.value})}
                 />
                 <label>Responsibilities: </label>
                 <input 
-                    onChange={(e) => setInfo({...info, Responsibilities: e.target.value})}
+                    value={data.Responsibilities}
+                    onChange={(e) => onChange({...data, Responsibilities: e.target.value})}
                 />
                 <label>Start and End Dates: </label>
                 <input 
-                    onChange={(e) => setInfo({...info, 'Start and End Date': e.target.value})}
+                    value={data['Start and End Date']}
+                    onChange={(e) => onChange({...data, 'Start and End Date': e.target.value})}
                 />
-                <button onClick={onSubmit}>Submit</button>
-            </>
+            </div>
         )
-    } else {
-        return (
-            <button onClick={onEdit}>Edit</button>
-        )
-    }
 }

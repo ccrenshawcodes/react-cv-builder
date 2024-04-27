@@ -1,29 +1,22 @@
-import { useState } from 'react';
+export default function GeneralInfo ({ data, onChange }) {
 
-export default function GeneralInfo ({isActive, onEdit, onSubmit}) {
-
-    const [info, setInfo] = useState({name: '', email: '', phoneNumber: ''});
-    if (isActive) {
         return (
-            <>
+            <div className="input-section">
                 <label>Name: </label>
                 <input 
-                    onChange={(e) => setInfo({...info, name: e.target.value})}
+                    value={data.name}
+                    onChange={(e) => onChange({...data, name: e.target.value})}
                 />
                 <label>Email address: </label>
                 <input 
-                    onChange={(e) => setInfo({...info, email: e.target.value})}
+                    value={data.email}
+                    onChange={(e) => onChange({...data, email: e.target.value})}
                 />
                 <label>Phone number: </label>
                 <input 
-                    onChange={(e) => setInfo({...info, phoneNumber: e.target.value})}
+                    value={data.phoneNumber}
+                    onChange={(e) => onChange({...data, phoneNumber: e.target.value})}
                 />
-                <button onClick={onSubmit}>Submit</button>
-            </>
+            </div>
         )
-    } else {
-        return (
-            <button onClick={onEdit}>Edit</button>
-        )
-    }
 }

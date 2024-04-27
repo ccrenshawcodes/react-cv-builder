@@ -1,36 +1,56 @@
 import './App.css'
-import EducationInfo from './components/education';
+import EducationData from './components/education';
 import GeneralInfo from './components/general-info'
-import { useState } from 'react';
 import PracticalExperience from './components/practical';
+import exampleData from './placeholders';
+import AboutYouDisplay from './components/about-display';
+import SectionDisplay from './components/section-display';
+import { useState } from 'react';
 
 function App() {
-  const [activeSection, setActiveSection] = useState(null);
+
+  const [aboutYou, setAboutYou] = useState(exampleData.personalInfo);
+  const [education, setEducation] = useState(exampleData.educationInfo);
+  const [experience, setExperience] = useState(exampleData.experienceInfo);
+
+
 
   return (
     <>
       <h1>Build a CV</h1>
 
-      <h2>About You</h2>
-      <GeneralInfo 
-        isActive={activeSection === 0}
-        onSubmit={() => setActiveSection(null)}
-        onEdit={() => setActiveSection(0)}
-      />
+      <div className="main-page">
+        <div className="inputs">
+          <h2>About You</h2>
+          <GeneralInfo
+            data={aboutYou}
+            onChange={setAboutYou}
+          />
 
-      <h2>Education Information</h2>
-      <EducationInfo
-        isActive={activeSection === 1}
-        onSubmit={() => setActiveSection(null)}
-        onEdit={() => setActiveSection(1)}
-      />
+          <h2>Education Information</h2>
+          <EducationData
+            data={education}
+            onChange={setEducation}
+          />
 
-      <h2>Practical Experience</h2>
-      <PracticalExperience
-        isActive={activeSection === 2}
-        onSubmit={() => setActiveSection(null)}
-        onEdit={() => setActiveSection(2)}
-      />
+          <h2>Practical Experience</h2>
+          <PracticalExperience 
+            data={experience}
+            onChange={setExperience}
+          />
+
+          <button>Submit</button>
+        </div>
+
+        <div className="outputs">
+          <AboutYouDisplay data={aboutYou} />
+          <h2>Education</h2>
+          <SectionDisplay data={education} />
+          <h2>Experience</h2>
+          <SectionDisplay data={experience} />
+        </div>
+      </div>
+
     </>
   )
 }
@@ -41,9 +61,13 @@ export default App
 /* 
   TODO:
 
-  - "edit" button to appear only after info has been "submitted"; all fields should be editable by default
-  - retain and display info after hitting "submit"
-  - Decide what to do about sections that aren't fully filled out
+  - 'degree level' should be a dropdown
   - Allow to add multiple of the same type (ie multiple Educations, multiple Experiences)
-  - Format pretty on Big Submit
+  - 'Education' and 'Experience' headers to show only after there's some info in those sections?
+  - Reset button
+  - 
+
+
+  1. Get all the data displaying
+  2. Format it nice with CSS or whatever
 */
