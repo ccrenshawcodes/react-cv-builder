@@ -1,27 +1,44 @@
 export default function PracticalExperience ({ data, onChange }) {
 
-        return (
-            <div className="input-section">
-                <label>Name of Company: </label>
-                <input 
-                    value={data['Name of Company']}
-                    onChange={(e) => onChange({...data, 'Name of Company': e.target.value})}
-                />
-                <label>Title:  </label>
-                <input 
-                    value={data.Title}
-                    onChange={(e) => onChange({...data, Title: e.target.value})}
-                />
-                <label>Responsibilities: </label>
-                <input 
-                    value={data.Responsibilities}
-                    onChange={(e) => onChange({...data, Responsibilities: e.target.value})}
-                />
-                <label>Start and End Dates: </label>
-                <input 
-                    value={data['Start and End Date']}
-                    onChange={(e) => onChange({...data, 'Start and End Date': e.target.value})}
-                />
-            </div>
-        )
+    return (
+        <div className="input-section">
+
+            {data.map((entry, i) => (
+                <>
+                    <div key={i}>
+                        <label>Name of Company: </label>
+                        <input
+                            type="text"
+                            value={entry.nameOfCompany}
+                            onChange={(e) => onChange(i, "nameOfCompany", e.target.value)}
+                            />
+                    </div>
+                    <div key={i}>
+                        <label>Title: </label>
+                        <input
+                            type="text"
+                            value={entry.Title}
+                            onChange={(e) => onChange(i, "Title", e.target.value)}
+                        />
+                    </div>
+                    <div key={i}>
+                        <label>Responsibilities: </label>
+                        <input
+                            type="text"
+                            value={entry.Responsibilities}
+                            onChange={(e) => onChange(i, "Responsibilities", e.target.value)}
+                        />
+                    </div>
+                    <div key={i}>
+                        <label>Start and End Dates: </label>
+                        <input
+                            type="text"
+                            value={entry.startEndDates}
+                            onChange={(e) => onChange(i, "startEndDates", e.target.value)}
+                        />
+                    </div>
+                </>
+            ))}
+        </div>
+    )
 }

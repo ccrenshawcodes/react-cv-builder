@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const exampleData = {
     personalInfo: {
         name: '',
@@ -5,16 +7,18 @@ const exampleData = {
         phoneNumber: ''
     },
     educationInfo: [{
-        'Name of School': '', 
-        'Degree Level': '', 
-        'Field of Study': '', 
-        'Dates of Study': ''
+        nameOfSchool: '', 
+        degreeLevel: '', 
+        fieldOfStudy: '', 
+        datesOfStudy: '',
+        id: uuidv4()
     }],
     experienceInfo: [{
-        'Name of Company': '', 
+        nameOfCompany: '', 
         Title: '', 
         Responsibilities: '', 
-        'Start and End Date': ''
+        startEndDates: '',
+        id: uuidv4()
     }]
 }
 

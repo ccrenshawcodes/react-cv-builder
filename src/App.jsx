@@ -4,7 +4,8 @@ import GeneralInfo from './components/general-info'
 import PracticalExperience from './components/practical';
 import exampleData from './placeholders';
 import AboutYouDisplay from './components/about-display';
-import SectionDisplay from './components/section-display';
+import EducationDisplay from './components/education-display';
+import ExperienceDisplay from './components/experience-display';
 import { useState } from 'react';
 
 function App() {
@@ -13,6 +14,36 @@ function App() {
   const [education, setEducation] = useState(exampleData.educationInfo);
   const [experience, setExperience] = useState(exampleData.experienceInfo);
 
+  const handleEducationChange = (index, key, value) => {
+    setEducation((prevState) => {
+      return prevState.map((entry, i) => {
+        if (i === index) {
+          return {
+            ...entry,
+            [key]: value,
+          };
+        }
+        return entry;
+      })
+    })
+  }
+
+  const handleExperienceChange = (index, key, value) => {
+    setExperience((prevState) => {
+      return prevState.map((entry, i) => {
+        if (i === index) {
+          return {
+            ...entry,
+            [key]: value,
+          };
+        }
+        return entry;
+      })
+    })
+  }
+
+  console.log(education);
+  console.log(experience);
 
 
   return (
@@ -30,13 +61,13 @@ function App() {
           <h2>Education Information</h2>
           <EducationData
             data={education}
-            onChange={setEducation}
+            onChange={handleEducationChange}
           />
 
           <h2>Practical Experience</h2>
           <PracticalExperience 
             data={experience}
-            onChange={setExperience}
+            onChange={handleExperienceChange}
           />
 
           <button>Submit</button>
@@ -45,9 +76,9 @@ function App() {
         <div className="outputs">
           <AboutYouDisplay data={aboutYou} />
           <h2>Education</h2>
-          <SectionDisplay data={education} />
+          <EducationDisplay data={education[0]} />
           <h2>Experience</h2>
-          <SectionDisplay data={experience} />
+          <ExperienceDisplay data={experience[0]} />
         </div>
       </div>
 
@@ -56,18 +87,3 @@ function App() {
 }
 
 export default App
-
-
-/* 
-  TODO:
-
-  - 'degree level' should be a dropdown
-  - Allow to add multiple of the same type (ie multiple Educations, multiple Experiences)
-  - 'Education' and 'Experience' headers to show only after there's some info in those sections?
-  - Reset button
-  - 
-
-
-  1. Get all the data displaying
-  2. Format it nice with CSS or whatever
-*/
