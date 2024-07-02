@@ -1,4 +1,3 @@
-import './App.css'
 import EducationData from './components/education';
 import GeneralInfo from './components/general-info'
 import PracticalExperience from './components/practical';
